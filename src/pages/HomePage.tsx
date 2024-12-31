@@ -1,16 +1,11 @@
-import { Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Calendar } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
-import { PendingUsersNotification } from '../components/admin/PendingUsersNotification';
-import { useAdmin } from '../contexts/AdminContext';
 
 export function HomePage() {
-  const { isAdmin } = useAdmin();
-
   return (
     <div className="min-h-screen bg-dark-200 text-gray-100">
-      {/* Hero section avec image en arrière-plan */}
       <div className="relative h-[60vh] mb-12">
         <div 
           className="absolute inset-0 bg-cover bg-center"
@@ -21,16 +16,13 @@ export function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-dark-200/90 to-dark-200/60" />
         </div>
         <div className="relative h-full max-w-7xl mx-auto px-4 flex items-center justify-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white text-center">
+          <h1 className="text-5xl md:text-7xl font-azonix text-white text-center">
             CSLG PADEL SATORY
           </h1>
         </div>
       </div>
 
-      {/* Contenu principal */}
       <div className="max-w-7xl mx-auto px-4">
-        {isAdmin && <PendingUsersNotification />}
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Card className="overflow-hidden flex flex-col">
             <div className="p-6 flex-1 text-center">

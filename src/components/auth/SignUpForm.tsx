@@ -53,14 +53,35 @@ export function SignUpForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-dark-200 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-cover bg-center px-4"
+      style={{
+        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://www.aecilluminazione.fr/wp-content/uploads/2021/11/Eclairage-LED-courts-de-padel-interieurs-exterieurs-AEC-Illuminazione-1000x1000.jpg")',
+      }}>
       <Card className="max-w-md w-full p-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-primary-400">
-            Créer un compte
+        <div className="text-center space-y-4 mb-8">
+          <div className="flex items-center justify-center">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-12 w-12 text-primary-400"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 2c0 5.523-4.477 10-10 10" />
+              <path d="M12 2c0 5.523 4.477 10 10 10" />
+              <path d="M2 12c5.523 0 10 4.477 10 10" />
+              <path d="M22 12c-5.523 0-10 4.477-10 10" />
+            </svg>
+          </div>
+          <h2 className="text-3xl font-azonix text-primary-400">
+            CSLG PADEL SATORY
           </h2>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+
+        <form className="space-y-6" onSubmit={handleSubmit}>
           {error && (
             <div className="text-red-500 text-sm text-center">{error}</div>
           )}

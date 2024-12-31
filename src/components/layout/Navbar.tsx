@@ -41,7 +41,7 @@ export function Navbar() {
                 <Menu className="block h-6 w-6" />
               )}
             </button>
-            <Link to="/" className="flex items-center text-xl font-bold text-primary-400 mx-auto lg:mx-0">
+            <Link to="/" className="flex items-center text-lg font-azonix text-primary-400 mx-auto lg:mx-0">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -57,7 +57,7 @@ export function Navbar() {
                 <path d="M2 12c5.523 0 10 4.477 10 10" />
                 <path d="M22 12c-5.523 0-10 4.477-10 10" />
               </svg>
-              <span>CSLG Padel SATORY</span>
+              <span>Padel SATORY</span>
             </Link>
           </div>
 

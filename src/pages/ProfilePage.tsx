@@ -43,6 +43,10 @@ export function ProfilePage() {
     setProfile(prev => prev ? { ...prev, avatar_url: url } : null);
   };
 
+  const handleProfileUpdate = (updatedProfile: User) => {
+    setProfile(updatedProfile);
+  };
+
   if (loading) {
     return <LoadingSpinner />;
   }
@@ -80,16 +84,16 @@ export function ProfilePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Card className="p-6">
             <div className="mb-6">
-              <h3 className="text-xl font-medium text-primary-400 mb-4">
-                Mon profil
-              </h3>
               <AvatarUpload
                 userId={user.id}
                 avatarUrl={profile.avatar_url}
                 onAvatarUpdate={handleAvatarUpdate}
               />
             </div>
-            <ProfileInfo profile={profile} />
+            <ProfileInfo 
+              profile={profile} 
+              onProfileUpdate={handleProfileUpdate}
+            />
           </Card>
 
           <Card className="p-6">
