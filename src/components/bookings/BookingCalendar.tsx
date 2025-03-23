@@ -39,7 +39,7 @@ export function BookingCalendar() {
           {!isMobile && "Précédent"}
         </Button>
 
-        <h2 className="text-xl font-semibold text-primary-400">
+        <h2 className="text-xl text-center font-medium text-primary-400">
           {format(selectedDate, 'EEEE d MMMM yyyy', { locale: fr })}
         </h2>
 

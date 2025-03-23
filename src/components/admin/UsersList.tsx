@@ -1,5 +1,6 @@
 import { Trash2 } from 'lucide-react';
 import { User } from '../../types/auth';
+import { User as UserIcon } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { RoleSelect } from './RoleSelect';
 import { SortableHeader } from './SortableHeader';
@@ -71,12 +72,17 @@ export function UsersList({
             <tr key={user.id} className="hover:bg-dark-100/50">
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex items-center">
-                  {user.avatar_url && (
+                  {user.avatar_url ? (
                     <img
                       src={user.avatar_url}
                       alt=""
                       className="h-8 w-8 rounded-full mr-3"
                     />
+                  )
+                  : ( 
+                    <div className="h-8 w-8 rounded-full bg-dark-300 flex items-center justify-center mr-3">
+                      <UserIcon className="h-5 w-5 text-gray-400" />
+                    </div>
                   )}
                   <div>
                     <div className="text-sm text-gray-100">

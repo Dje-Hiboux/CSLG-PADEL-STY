@@ -78,22 +78,6 @@ export function NewsManagement() {
           <h2 className="text-xl font-medium text-primary-400">
             Gestion des actualités
           </h2>
-          <div className="flex items-center gap-2">
-            <SortableHeader
-              label="Date"
-              field="date"
-              currentField={sortConfig.field}
-              direction={sortConfig.direction}
-              onSort={requestSort}
-            />
-            <SortableHeader
-              label="Titre"
-              field="title"
-              currentField={sortConfig.field}
-              direction={sortConfig.direction}
-              onSort={requestSort}
-            />
-          </div>
         </div>
         <Button
           onClick={() => {

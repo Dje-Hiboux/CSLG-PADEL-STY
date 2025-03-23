@@ -69,6 +69,12 @@ export function HomePage() {
           </Link>
         </div>
       </div>
+      
+      <div className="text-center py-4 mt-auto">
+        <p className="text-xs text-gray-500">
+          &copy; {new Date().getFullYear()} CSLG PADEL STY
+        </p>
+      </div>
     </div>
   );
 }

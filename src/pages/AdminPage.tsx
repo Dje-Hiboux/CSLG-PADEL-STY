@@ -24,6 +24,7 @@ export function AdminPage() {
           <h1 className="text-2xl sm:text-3xl font-bold text-primary-400">
             Administration
           </h1>
+          <div className="flex items-center justify-center bg-dark-100">
           <div className="flex bg-dark-100 rounded-lg p-1 overflow-x-auto">
             {tabs.map(({ id, label, icon: Icon }) => (
               <button
@@ -39,6 +40,7 @@ export function AdminPage() {
                 <span className="hidden sm:inline">{label}</span>
               </button>
             ))}
+          </div>
           </div>
         </div>
 

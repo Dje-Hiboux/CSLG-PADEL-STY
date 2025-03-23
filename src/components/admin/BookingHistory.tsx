@@ -7,8 +7,10 @@ import { LoadingSpinner } from '../ui/LoadingSpinner';
 import { SortableHeader } from './SortableHeader';
 import { BookingHistoryFilters } from './BookingHistoryFilters';
 import { useFilteredBookings } from '../../hooks/useFilteredBookings';
-import { User } from 'lucide-react';
+import { User, Trash } from 'lucide-react';
 import { BookingHistory as BookingHistoryType } from '../../types/booking';
+import { toast } from '../../lib/toast';
+import { DeleteBookingModal } from './DeleteBookingModal';
 
 type SortField = 'date' | 'court' | 'user';
 type SortDirection = 'asc' | 'desc';
@@ -17,6 +19,8 @@ export function BookingHistory() {
   const [bookings, setBookings] = useState<BookingHistoryType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [bookingToDelete, setBookingToDelete] = useState<BookingHistoryType | null>(null);
   const [filters, setFilters] = useState({
     selectedDate: null as string | null,
     userSearch: '',
@@ -91,6 +95,37 @@ export function BookingHistory() {
     }));
   };
 
+  const openDeleteModal = (booking: BookingHistoryType) => {
+    setBookingToDelete(booking);
+  };
+
+  const closeDeleteModal = () => {
+    setBookingToDelete(null);
+  };
+
+  const handleDeleteBooking = async (bookingId: string) => {
+    try {
+      setDeleteLoading(true);
+      
+      const { error } = await supabase
+        .from('bookings')
+        .delete()
+        .eq('id', bookingId);
+      
+      if (error) throw error;
+      
+      // Mise à jour locale de l'état
+      setBookings(prevBookings => prevBookings.filter(booking => booking.id !== bookingId));
+      toast.success('Réservation supprimée avec succès');
+      closeDeleteModal();
+    } catch (err) {
+      console.error('Error deleting booking:', err);
+      toast.error(err instanceof Error ? err.message : 'Erreur lors de la suppression');
+    } finally {
+      setDeleteLoading(false);
+    }
+  };
+
   if (loading) return <LoadingSpinner />;
   if (error) return <div className="text-red-400">{error}</div>;
 
@@ -130,6 +165,7 @@ export function BookingHistory() {
                     onSort={requestSort}
                   />
                 </th>
+                <th className="px-6 py-3 text-center text-xs font-medium text-gray-400 uppercase tracking-wider hover:text-primary-400 transition-colors">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-dark-300">
@@ -176,12 +212,29 @@ export function BookingHistory() {
                       </div>
                     </div>
                   </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                    <button
+                      onClick={() => openDeleteModal(booking)}
+                      className="text-red-400 hover:text-red-300 transition-colors p-1 rounded-full hover:bg-red-400/10"
+                      title="Supprimer la réservation"
+                    >
+                      <Trash className="h-5 w-5" />
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </Card>
+
+      <DeleteBookingModal
+        booking={bookingToDelete}
+        isOpen={bookingToDelete !== null}
+        onClose={closeDeleteModal}
+        onConfirm={handleDeleteBooking}
+        isLoading={deleteLoading}
+      />
     </div>
   );
 }

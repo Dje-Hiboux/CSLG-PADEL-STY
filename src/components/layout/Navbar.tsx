@@ -49,7 +49,7 @@ export function Navbar() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="h-6 w-6 mr-2"
+                className="h-6 w-6 mr-2 ml-2"
               >
                 <circle cx="12" cy="12" r="10" />
                 <path d="M12 2c0 5.523-4.477 10-10 10" />
